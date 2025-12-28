@@ -1,4 +1,3 @@
-
 import java.time.LocalDate;
 
 import jave.time.localDate;
@@ -17,6 +16,26 @@ public class LeaveDay{
     this.subType = subType;
     this.date = date;
     this.memo = memo;
+  }
+
+  public Long getLeaveDayId(){
+    return leaveDayId;
+  }
+
+  public Long getUserId(){
+    return userId;
+  }
+
+  public LeaveType getSubType(){
+    return subType;
+  }
+
+  public LocalDate getdate(){
+    return date;
+  }
+
+  public String getMemo(){
+    return memo;
   }
   
 }

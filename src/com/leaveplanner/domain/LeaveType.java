@@ -10,5 +10,13 @@ public class LeaveType{
     this.isCustom = isCustom;
   }
 
+  public Long getLeaveTypeId(){
+    return leaveTypeId;
+  }
+
+  public String getName(){
+    return name;
+  }
+
   
 }
