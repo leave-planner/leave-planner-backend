@@ -1,22 +1,24 @@
+package com.leaveplanner.controller;
+
 import java.time.LocalDate;
+import java.util.List;
+import com.leaveplanner.domain.LeaveDay;
+import com.leaveplanner.service.LeaveDayService;
 
-public class LeaveDayControllr{
+public class LeaveDayController{
 
-  private LeaveDaySerivice leaveDayService;
+  private LeaveDayService leaveDayService;
 
-  public LeaveDayControllr(LeaveDaySerivice leaveDayService){
+  public LeaveDayController(LeaveDayService leaveDayService){
     this.leaveDayService = leaveDayService;
   }
 
   //휴가 등록
   public void createLeaveDay(Long userId, LocalDate date, Long leaveType, String memo){
-    leaveDayService.createLeaveDay(userId, date, leaveType, memo);
+    leaveDayService.create(userId, date, null, memo);
   }
 
   public List<LeaveDay> getMonthlyLeaves(Long userId, LocalDate date){
-    leaveDayService.getMonthlyLeaves(userId, dage);
+    return leaveDayService.getMonthlyLeaves(userId, date);
   }
-
-
-  
 }

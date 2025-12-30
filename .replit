@@ -1,6 +1,6 @@
 compile = "javac -classpath .:target/dependency/* -d . $(find . -type f -name '*.java')"
 run = "java -classpath .:target/dependency/* Main"
-entrypoint = "src/com/leaveplanner/Main.java"
+entrypoint = "src/main/java/Main.java"
 hidden = ["**/*.class"]
 
 [packager]
@@ -9,23 +9,14 @@ language = "java"
 [packager.features]
 packageSearch = true
 
-[languages.java]
-pattern = "**/*.java"
-
-[languages.java.languageServer]
-start = "jdt-language-server"
-
 [unitTest]
 language = "java"
 
 [nix]
 channel = "stable-22_11"
 
-[debugger]
-support = true
 
-[debugger.compile]
-command = "javac -classpath .:/run_dir/junit-4.12.jar:target/dependency/* -g -d . $(find . -type f -name '*.java')"
+
 
 [debugger.interactive]
 transport = "localhost:0"
@@ -84,7 +75,7 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "mvn compile && mvn exec:java -Dexec.mainClass=\"com.leaveplanner.Main\""
+args = "javac -d . src/com/leaveplanner/Main.java src/com/leaveplanner/service/*.java src/com/leaveplanner/repository/*.java src/com/leaveplanner/domain/*.java src/com/leaveplanner/controller/*.java && java com.leaveplanner.Main"
 
 [workflows.workflow.metadata]
 outputType = "console"

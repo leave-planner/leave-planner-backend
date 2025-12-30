@@ -1,3 +1,5 @@
+package com.leaveplanner.domain;
+
 public class LeaveType{
 
   private final Long leaveTypeId;
@@ -5,7 +7,7 @@ public class LeaveType{
   private final boolean isCustom;
 
   public LeaveType(Long leaveTypeId, String name, boolean isCustom){
-    this.leaveTypeId = leaveTpeId;
+    this.leaveTypeId = leaveTypeId;
     this.name = name;
     this.isCustom = isCustom;
   }

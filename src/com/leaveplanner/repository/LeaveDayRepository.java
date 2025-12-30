@@ -1,5 +1,9 @@
+package com.leaveplanner.repository;
+
 import java.time.LocalDate;
-import java.util.Optional;
+import java.time.YearMonth;
+import java.util.List;
+import com.leaveplanner.domain.LeaveDay;
 
 public interface LeaveDayRepository{
   

@@ -1,6 +1,6 @@
-import java.time.LocalDate;
+package com.leaveplanner.domain;
 
-import jave.time.localDate;
+import java.time.LocalDate;
 
 public class LeaveDay{
   
@@ -10,8 +10,8 @@ public class LeaveDay{
   private LocalDate date;
   private final String memo;
 
-  public LeaveDay(Long leaveDAyId, Long userId, LeaveType subType, LocalDate date, String memo){
-    this.leaveDAyId = leaveDAyId;
+  public LeaveDay(Long leaveDayId, Long userId, LeaveType subType, LocalDate date, String memo){
+    this.leaveDayId = leaveDayId;
     this.userId = userId;
     this.subType = subType;
     this.date = date;
@@ -30,7 +30,7 @@ public class LeaveDay{
     return subType;
   }
 
-  public LocalDate getdate(){
+  public LocalDate getDate(){
     return date;
   }
 
