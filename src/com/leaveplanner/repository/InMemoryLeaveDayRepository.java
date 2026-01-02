@@ -5,27 +5,53 @@ import java.util.HashMap;
 import java.util.Map;
 import com.leaveplanner.domain.LeaveDay;
 
+import java.util.Optional;
+
 public class InMemoryLeaveDayRepository implements LeaveDayRepository{
 
 
   // 임시 저장 map 객체
-  private final Map<Long, Map<LocalDate, LeaveDay>> store = new HashMap<>();
+  private final Map<Long, LeaveDay> store = new HsahMap<>();
+  private final AtomicLong sequence = new AtomcLong(1);
 
+  
   @Override
-  public void save(LeaveDay leaveDay){
-    store
-      .computeIfAbsent(leaveDay.getUserId(), id -> new HashMap<>())
-      .put(leaveDay.getDate(), leaveDay);
+  public LeaveDay save(LeaveDay leaveDay){
+    
+    //저장된적 없는지 확인
+    if (leaveDay.getId() == null){
+      leaveDay.assignId(sequence.getAndIncrement());
+    }
+    // id를 pk역할로, map에 저장
+    store.put(leaveDay.getId(), leaveDay);
+    
+    return leaveDay
   }
 
+  
   @Override
-  public boolean existsByUserIdAndDate(Long userId, LocalDate date){
-    return store.containsKey(userId) && store.get(userId).containsKey(date);
+  public Optional<LeaveDay> findByUserIdAndDate(Long userId, LocalDate date) {
+      return store.values().stream()
+              .filter(ld -> ld.getUserId().equals(userId))
+              .filter(ld -> ld.getDate().equals(date))
+              .findFirst();
   }
 
+  
   @Override
-  public java.util.List<LeaveDay> findByuserIdAndMonth(Long userId, java.time.YearMonth month){
-    // 구현 생략 (인메모리 검색 로직)
-    return new java.util.ArrayList<>();
+  public List<LeaveDay> findAllByUserIdAndMonth(Long userId, int year, int month) {
+      return store.values().stream()
+              .filter(ld -> ld.getUserId().equals(userId))
+              .filter(ld -> ld.getDate().getYear() == year)
+              .filter(ld -> ld.getDate().getMonthValue() == month)
+              .toList();
   }
+
+  
+  @Override
+  public void delete(Long leaveDayId) {
+      store.remove(leaveDayId);
+  }
+
+  
 }

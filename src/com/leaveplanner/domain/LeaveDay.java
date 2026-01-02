@@ -10,12 +10,18 @@ public class LeaveDay{
   private LocalDate date;
   private final String memo;
 
-  public LeaveDay(Long leaveDayId, Long userId, LeaveType subType, LocalDate date, String memo){
-    this.leaveDayId = leaveDayId;
+  public LeaveDay(Long userId, LeaveType subType, LocalDate date, String memo){    
     this.userId = userId;
     this.subType = subType;
     this.date = date;
     this.memo = memo;
+  }
+
+  public void assignId(Long id){
+    if (this.id != null){
+      throw new IllegalStateException("Id는 한번만 할당");
+    }
+    this.id = id
   }
 
   public Long getLeaveDayId(){

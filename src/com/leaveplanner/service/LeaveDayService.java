@@ -19,19 +19,41 @@ public class LeaveDayService{
   public void create(Long userId, LocalDate date, LeaveType leaveType, String memo){
 
     //해당 날짜 휴가존재 예외처리
-    if (leaveDayRepository.existsByUserIdAndDate(userId,date)){
+    Optional<LeaveDay> existing = leaveDayREpository.findByUserIdAndDate(userId, date);
+    if (existing.isPresent()){
       throw new IllegalStateException("이미 해당 날짜 휴가 존재");
     }
 
     //leaveDay 생성
-    LeaveDay leaveDay = new LeaveDay(1L, userId, leaveType, date, memo);
+    LeaveDay leaveDay = new LeaveDay(userId, leaveType, date, memo);
+
     //repository로
-    leaveDayRepository.save(leaveDay);
+    return leaveDayRepository.save(leaveDay);
   }
 
-  //한달치 휴가 조회
-  public List<LeaveDay> getMonthlyLeaves(Long userId, LocalDate date){
-    YearMonth month = YearMonth.from(date);
-    return leaveDayRepository.findByuserIdAndMonth(userId, month);
+  
+  /**
+   * 특정 날짜 휴가 조회
+   */
+  public Optional<LeaveDay> findLeaveDay(Long userId, LocalDate date) {
+      return leaveDayRepository.findByUserIdAndDate(userId, date);
   }
+
+  /**
+   * 월별 휴가 조회
+   */
+  public List<LeaveDay> findLeaveDaysByMonth(Long userId, int year, int month) {
+      return leaveDayRepository.findAllByUserIdAndMonth(userId, year, month);
+  }
+
+  /**
+   * 휴가 삭제
+   */
+  public void deleteLeaveDay(Long leaveDayId) {
+      leaveDayRepository.delete(leaveDayId);
+  }
+
+  
+
+  
 }
