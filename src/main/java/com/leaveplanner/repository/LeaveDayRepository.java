@@ -13,7 +13,7 @@ public interface LeaveDayRepository{
   
   Optional<LeaveDay> findByUserIdAndDate(Long userId, LocalDate date);
 
-  List<LeaveDay> findByuserIdAndMonth(Long userId, int year,int month);
+  List<LeaveDay> findAllByUserIdAndMonth(Long userId, int year,int month);
 
   void delete(Long leaveDayId);
 }

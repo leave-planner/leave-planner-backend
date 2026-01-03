@@ -6,26 +6,29 @@ import java.util.Map;
 import com.leaveplanner.domain.LeaveDay;
 
 import java.util.Optional;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class InMemoryLeaveDayRepository implements LeaveDayRepository{
 
 
   // 임시 저장 map 객체
-  private final Map<Long, LeaveDay> store = new HsahMap<>();
-  private final AtomicLong sequence = new AtomcLong(1);
+  private final Map<Long, LeaveDay> store = new HashMap<>();
+  private final AtomicLong sequence = new AtomicLong(1);
 
   
   @Override
   public LeaveDay save(LeaveDay leaveDay){
     
     //저장된적 없는지 확인
-    if (leaveDay.getId() == null){
+    if (leaveDay.getLeaveDayId() == null){
       leaveDay.assignId(sequence.getAndIncrement());
     }
     // id를 pk역할로, map에 저장
-    store.put(leaveDay.getId(), leaveDay);
+    store.put(leaveDay.getLeaveDayId(), leaveDay);
     
-    return leaveDay
+    return leaveDay;
   }
 
   

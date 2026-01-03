@@ -18,7 +18,7 @@ public class LeaveDayController{
     leaveDayService.create(userId, date, null, memo);
   }
 
-  public List<LeaveDay> getMonthlyLeaves(Long userId, LocalDate date){
-    return leaveDayService.getMonthlyLeaves(userId, date);
-  }
+  // public List<LeaveDay> getMonthlyLeaves(Long userId, LocalDate date){
+  //   return leaveDayService.findLeaveDaysByMonth(userId, date);
+  // }
 }

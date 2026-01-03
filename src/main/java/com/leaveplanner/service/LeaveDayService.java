@@ -1,11 +1,15 @@
 package com.leaveplanner.service;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.time.YearMonth;
 import com.leaveplanner.domain.LeaveDay;
 import com.leaveplanner.domain.LeaveType;
 import com.leaveplanner.repository.LeaveDayRepository;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.time.YearMonth;
+import java.util.Optional;
+
+
 
 public class LeaveDayService{
 
@@ -16,10 +20,10 @@ public class LeaveDayService{
   }
 
   //휴가 날짜 생성
-  public void create(Long userId, LocalDate date, LeaveType leaveType, String memo){
+  public LeaveDay create(Long userId, LocalDate date, LeaveType leaveType, String memo){
 
     //해당 날짜 휴가존재 예외처리
-    Optional<LeaveDay> existing = leaveDayREpository.findByUserIdAndDate(userId, date);
+    Optional<LeaveDay> existing = leaveDayRepository.findByUserIdAndDate(userId, date);
     if (existing.isPresent()){
       throw new IllegalStateException("이미 해당 날짜 휴가 존재");
     }

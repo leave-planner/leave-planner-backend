@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class LeaveDay{
   
-  private final Long leaveDayId;
+  private Long leaveDayId;
   private final Long userId;
   private final LeaveType subType;
   private LocalDate date;
@@ -18,10 +18,10 @@ public class LeaveDay{
   }
 
   public void assignId(Long id){
-    if (this.id != null){
+    if (this.leaveDayId != null){
       throw new IllegalStateException("Id는 한번만 할당");
     }
-    this.id = id
+    this.leaveDayId = id;
   }
 
   public Long getLeaveDayId(){
