@@ -10,7 +10,6 @@ import java.time.YearMonth;
 import java.util.Optional;
 
 
-
 public class LeaveDayService{
 
   private LeaveDayRepository leaveDayRepository;
@@ -36,28 +35,23 @@ public class LeaveDayService{
   }
 
   
-  /**
-   * 특정 날짜 휴가 조회
-   */
+  //특정 날짜 휴가 조회
   public Optional<LeaveDay> findLeaveDay(Long userId, LocalDate date) {
       return leaveDayRepository.findByUserIdAndDate(userId, date);
   }
 
-  /**
-   * 월별 휴가 조회
-   */
+
+  //월별 휴가 조회
   public List<LeaveDay> findLeaveDaysByMonth(Long userId, int year, int month) {
       return leaveDayRepository.findAllByUserIdAndMonth(userId, year, month);
   }
 
-  /**
-   * 휴가 삭제
-   */
+
+   //휴가 삭제
   public void deleteLeaveDay(Long leaveDayId) {
       leaveDayRepository.delete(leaveDayId);
   }
 
   
-
   
 }

@@ -17,7 +17,8 @@ public class InMemoryLeaveDayRepository implements LeaveDayRepository{
   private final Map<Long, LeaveDay> store = new HashMap<>();
   private final AtomicLong sequence = new AtomicLong(1);
 
-  
+
+  // LeaveDay 저장
   @Override
   public LeaveDay save(LeaveDay leaveDay){
     
@@ -31,7 +32,7 @@ public class InMemoryLeaveDayRepository implements LeaveDayRepository{
     return leaveDay;
   }
 
-  
+  // userId와 날짜로 LeaveDay 조회
   @Override
   public Optional<LeaveDay> findByUserIdAndDate(Long userId, LocalDate date) {
       return store.values().stream()
@@ -40,7 +41,7 @@ public class InMemoryLeaveDayRepository implements LeaveDayRepository{
               .findFirst();
   }
 
-  
+  // userId와 월로 해당 월 휴가 목록 조회
   @Override
   public List<LeaveDay> findAllByUserIdAndMonth(Long userId, int year, int month) {
       return store.values().stream()
@@ -50,7 +51,8 @@ public class InMemoryLeaveDayRepository implements LeaveDayRepository{
               .toList();
   }
 
-  
+
+  // 삭제
   @Override
   public void delete(Long leaveDayId) {
       store.remove(leaveDayId);
