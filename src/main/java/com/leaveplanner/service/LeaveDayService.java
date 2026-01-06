@@ -18,7 +18,7 @@ public class LeaveDayService{
     this.leaveDayRepository = leaveDayRepository;
   }
 
-  //휴가 날짜 생성
+//휴가 날짜 생성
   public LeaveDay create(Long userId, LocalDate date, LeaveType leaveType, String memo){
 
     //해당 날짜 휴가존재 예외처리
@@ -35,19 +35,19 @@ public class LeaveDayService{
   }
 
   
-  //특정 날짜 휴가 조회
+//특정 날짜 휴가 조회
   public Optional<LeaveDay> findLeaveDay(Long userId, LocalDate date) {
       return leaveDayRepository.findByUserIdAndDate(userId, date);
   }
 
 
-  //월별 휴가 조회
+//월별 휴가 조회
   public List<LeaveDay> findLeaveDaysByMonth(Long userId, int year, int month) {
       return leaveDayRepository.findAllByUserIdAndMonth(userId, year, month);
   }
 
 
-   //휴가 삭제
+//휴가 삭제
   public void deleteLeaveDay(Long leaveDayId) {
       leaveDayRepository.delete(leaveDayId);
   }

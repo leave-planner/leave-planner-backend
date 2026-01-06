@@ -79,13 +79,15 @@ class InMemoryLeaveDayRepositoryTest {
     void 휴가를_삭제할_수_있다() {
         // given
         LeaveType annual = new LeaveType(1L, "ANNUAL", true);
-        LeaveDay leaveDay = repository.save(new LeaveDay(1L, annual, LocalDate.of(2026, 1, 10), "연차"));
+        LeaveDay leaveDay 
+            = repository.save(new LeaveDay(1L, annual, LocalDate.of(2026, 1, 10), "연차"));
 
         // when
         repository.delete(leaveDay.getLeaveDayId());
 
         // then
-        Optional<LeaveDay> result = repository.findByUserIdAndDate(1L, LocalDate.of(2026, 1, 10));
+        Optional<LeaveDay> result
+            = repository.findByUserIdAndDate(1L, LocalDate.of(2026, 1, 10));
         assertThat(result).isEmpty();
 
 
