@@ -2,6 +2,8 @@ package com.leaveplanner.controller;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
+
 import com.leaveplanner.domain.LeaveDay;
 import com.leaveplanner.service.LeaveDayService;
 
@@ -18,7 +20,19 @@ public class LeaveDayController{
     leaveDayService.create(userId, date, null, memo);
   }
 
-  // public List<LeaveDay> getMonthlyLeaves(Long userId, LocalDate date){
-  //   return leaveDayService.findLeaveDaysByMonth(userId, date);
-  // }
+  // 특정 날짜 휴가 조회
+  public Optional<LeaveDay> findLeaveDay(Long userId, LocalDate date){
+    return leaveDayService.findLeaveDay(userId, date);
+  }
+
+  // 월별 휴가 목록 조회
+  public List<LeaveDay> getMonthlyLeaves(Long userId, int year, int month){
+     return leaveDayService.findLeaveDaysByMonth(userId, year, month);
+   }
+
+  // 휴가 삭제
+  public void deleteLeaveDay(Long leaveDayId){
+    leaveDayService.deleteLeaveDay(leaveDayId);
+  }
+  
 }
