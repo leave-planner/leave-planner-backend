@@ -41,6 +41,30 @@ public class LeaveDayService{
   }
 
 
+//연속된 휴가 조회
+  public Optional<ContinuousLeave> findContinuousLeave(Long userId, LocalDate date) {
+
+      // 1. 해당 날짜에 LeaveDay 있는지 확인
+      Optional<LeaveDay> target = repository.findByUserIdAndDate(userId, date);
+      if (target.isEmpty()) {
+          return Optional.empty();
+      }
+
+      // 2. 앞/뒤로 날짜 확장하면서 연속된 LeaveDay 조회
+      List<LeaveDay> continuous = repository.findContinuousLeaveDays(
+          userId, date
+      );
+
+      // 3. 시작일 / 종료일 계산
+      LocalDate start = continuous.get(0).getDate();
+      LocalDate end = continuous.get(continuous.size() - 1).getDate();
+
+      return Optional.of(new ContinuousLeave(start, end, continuous));
+  }
+
+  
+  
+
 //월별 휴가 조회
   public List<LeaveDay> findLeaveDaysByMonth(Long userId, int year, int month) {
       return leaveDayRepository.findAllByUserIdAndMonth(userId, year, month);

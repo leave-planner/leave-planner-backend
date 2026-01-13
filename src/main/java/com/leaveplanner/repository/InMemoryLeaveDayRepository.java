@@ -32,6 +32,7 @@ public class InMemoryLeaveDayRepository implements LeaveDayRepository{
     return leaveDay;
   }
 
+  
   // userId와 날짜로 LeaveDay 조회
   @Override
   public Optional<LeaveDay> findByUserIdAndDate(Long userId, LocalDate date) {
@@ -40,6 +41,50 @@ public class InMemoryLeaveDayRepository implements LeaveDayRepository{
               .filter(ld -> ld.getDate().equals(date))
               .findFirst();
   }
+
+  
+  //연속된 휴가 조회
+  @Override
+  public List<LeaveDay> findContinuousLeaveDays(Long userId, LocalDate date) {
+
+      // 기준 날짜에 휴가 없으면 바로 종료
+      Optional<LeaveDay> center =
+              findByUserIdAndDate(userId, date);
+
+      if (center.isEmpty()) {
+          return List.of();
+      }
+
+      List<LeaveDay> result = new ArrayList<>();
+      result.add(center.get());
+
+      // 과거 방향
+      LocalDate prev = date.minusDays(1);
+      while (true) {
+          Optional<LeaveDay> day =
+                  findByUserIdAndDate(userId, prev);
+
+          if (day.isEmpty()) break;
+
+          result.add(0, day.get());
+          prev = prev.minusDays(1);
+      }
+
+      // 미래 방향
+      LocalDate next = date.plusDays(1);
+      while (true) {
+          Optional<LeaveDay> day =
+                  findByUserIdAndDate(userId, next);
+
+          if (day.isEmpty()) break;
+
+          result.add(day.get());
+          next = next.plusDays(1);
+      }
+
+      return result;
+  }
+  
 
   // userId와 월로 해당 월 휴가 목록 조회
   @Override

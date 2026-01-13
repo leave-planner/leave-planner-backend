@@ -25,6 +25,11 @@ public class LeaveDayController{
     return leaveDayService.findLeaveDay(userId, date);
   }
 
+  // 연속 휴가 조회
+    public Optional<ContinuousLeave> findContinuousLeave(Long userId, LocalDate date) {
+        return leaveDayService.findContinuousLeave(userId, date);
+    }
+
   // 월별 휴가 목록 조회
   public List<LeaveDay> getMonthlyLeaves(Long userId, int year, int month){
      return leaveDayService.findLeaveDaysByMonth(userId, year, month);
