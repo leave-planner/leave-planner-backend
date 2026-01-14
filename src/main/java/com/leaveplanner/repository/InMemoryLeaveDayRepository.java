@@ -64,7 +64,8 @@ public class InMemoryLeaveDayRepository implements LeaveDayRepository{
           Optional<LeaveDay> day =
                   findByUserIdAndDate(userId, prev);
 
-          if (day.isEmpty()) break;
+          if (day.isEmpty()) 
+              break;
 
           result.add(0, day.get());
           prev = prev.minusDays(1);
@@ -76,7 +77,8 @@ public class InMemoryLeaveDayRepository implements LeaveDayRepository{
           Optional<LeaveDay> day =
                   findByUserIdAndDate(userId, next);
 
-          if (day.isEmpty()) break;
+          if (day.isEmpty()) 
+              break;
 
           result.add(day.get());
           next = next.plusDays(1);

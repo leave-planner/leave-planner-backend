@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import com.leaveplanner.domain.LeaveDay;
 import com.leaveplanner.service.LeaveDayService;
+import com.leaveplanner.dto.ContinuousLeave;
 
 public class LeaveDayController{
 

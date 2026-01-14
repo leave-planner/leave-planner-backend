@@ -1,4 +1,6 @@
-package com.leaveplanner;
+package com.leaveplanner.dto;
+
+import com.leaveplanner.domain.LeaveDay;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,5 +21,15 @@ public class ContinuousLeave {
         this.leaveDays = leaveDays;
     }
 
-    
+    public LocalDate getStartDate(){
+        return startDate;
+    }
+
+    public LocalDate getEndDate(){
+        return endDate;
+    }
+
+    public List<LeaveDay> getLeaveDays(){
+        return leaveDays;
+    }
 }

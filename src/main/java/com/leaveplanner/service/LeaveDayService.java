@@ -3,10 +3,10 @@ package com.leaveplanner.service;
 import com.leaveplanner.domain.LeaveDay;
 import com.leaveplanner.domain.LeaveType;
 import com.leaveplanner.repository.LeaveDayRepository;
+import com.leaveplanner.dto.ContinuousLeave;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.time.YearMonth;
 import java.util.Optional;
 
 
@@ -45,13 +45,13 @@ public class LeaveDayService{
   public Optional<ContinuousLeave> findContinuousLeave(Long userId, LocalDate date) {
 
       // 1. 해당 날짜에 LeaveDay 있는지 확인
-      Optional<LeaveDay> target = repository.findByUserIdAndDate(userId, date);
+      Optional<LeaveDay> target = leaveDayRepository.findByUserIdAndDate(userId, date);
       if (target.isEmpty()) {
           return Optional.empty();
       }
 
       // 2. 앞/뒤로 날짜 확장하면서 연속된 LeaveDay 조회
-      List<LeaveDay> continuous = repository.findContinuousLeaveDays(
+      List<LeaveDay> continuous = leaveDayRepository.findContinuousLeaveDays(
           userId, date
       );
 
