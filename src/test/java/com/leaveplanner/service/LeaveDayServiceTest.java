@@ -106,7 +106,55 @@ class LeaveDayServiceTest{
         
         
     }
-    
+
+
+    @Test
+    void 연속된_휴가_조회(){
+        //given
+        Long userId = 1L;
+        LocalDate date1 = LocalDate.of(2026,1,10);
+        LocalDate date2 = LocalDate.of(2026,1,11);
+        LocalDate date3 = LocalDate.of(2026,1,12);
+        LeaveType annual = new LeaveType(1L,"ANNUAL",true);
+        
+        service.create(userId, date1, annual, "연가");
+        service.create(userId, date2, annual, "연가");
+        service.create(userId, date3, annual, "연가");
+
+        //when
+        ContinuousLeave result =
+            service.findContinuousLeave(userId, LocalDate.of(2026,1,10)).get();
+
+        //then
+        assertThat(result.getStartDate()).isEqualTo(date1);
+        assertThat(result.getEndDate()).isEqualTo(date3);
+        
+    }
+
+    @Test
+    void 중간에_끊긴_휴가는_묶이이_않는다(){
+        //given
+        Long userId = 1L;
+        LocalDate date1 = LocalDate.of(2026,1,10);
+        LocalDate date2 = LocalDate.of(2026,1,11);
+        LocalDate date3 = LocalDate.of(2026,1,12);
+        LocalDate date4 = LocalDate.of(2026,1,14);
+        LeaveType annual = new LeaveType(1L,"ANNUAL",true);
+        
+        service.create(userId, date1, annual, "연가");
+        service.create(userId, date2, annual, "연가");
+        service.create(userId, date3, annual, "연가");
+        service.create(userId, date4, annual, "연가");
+
+        //when
+        ContinuousLeave result =
+            service.findContinuousLeave(userId, LocalDate.of(2026,1,12)).get();
+
+        //then
+        assertThat(result.getStartDate()).isEqualTo(date1);
+        assertThat(result.getEndDate()).isEqualTo(date3);
+        
+    }
     
 
     @Test
