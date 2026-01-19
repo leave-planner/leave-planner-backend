@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.leaveplanner.repository.InMemoryLeaveDayRepositoryTest" time="0.369" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.leaveplanner.service.UserServiceTest" time="0.095" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -7,6 +7,7 @@
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://openjdk.java.net/"/>
+    <property name="user.timezone" value="GMT"/>
     <property name="os.name" value="Linux"/>
     <property name="java.vm.specification.version" value="17"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
@@ -52,8 +53,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="사용자와_월로_휴가_목록을_조회한다" classname="com.leaveplanner.repository.InMemoryLeaveDayRepositoryTest" time="0.195"/>
-  <testcase name="휴가를_삭제할_수_있다" classname="com.leaveplanner.repository.InMemoryLeaveDayRepositoryTest" time="0.002"/>
-  <testcase name="저장하면_id가_할당된다" classname="com.leaveplanner.repository.InMemoryLeaveDayRepositoryTest" time="0.003"/>
-  <testcase name="사용자와_날짜로_휴가를_조회할_수_있다" classname="com.leaveplanner.repository.InMemoryLeaveDayRepositoryTest" time="0.067"/>
+  <testcase name="전체_사용자_목록을_조회할_수_있다" classname="com.leaveplanner.service.UserServiceTest" time="0.078"/>
+  <testcase name="존재하지_않는_사용자_조회시_Empty_반환" classname="com.leaveplanner.service.UserServiceTest" time="0.0"/>
+  <testcase name="사용자를_정상적으로_생성한다" classname="com.leaveplanner.service.UserServiceTest" time="0.001"/>
+  <testcase name="id로_사용자를_조회할_수_있다" classname="com.leaveplanner.service.UserServiceTest" time="0.001"/>
+  <testcase name="입대일이_정확히_저장된다" classname="com.leaveplanner.service.UserServiceTest" time="0.001"/>
 </testsuite>
