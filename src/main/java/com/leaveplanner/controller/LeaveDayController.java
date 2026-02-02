@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.leaveplanner.domain.LeaveDay;
+import com.leaveplanner.domain.LeaveType;
 import com.leaveplanner.service.LeaveDayService;
 import com.leaveplanner.dto.ContinuousLeave;
 
@@ -17,8 +18,8 @@ public class LeaveDayController{
   }
 
   //휴가 등록
-  public void createLeaveDay(Long userId, LocalDate date, Long leaveType, String memo){
-    leaveDayService.create(userId, date, null, memo);
+  public void createLeaveDay(Long userId, LocalDate date, LeaveType leaveType, String memo){
+    leaveDayService.create(userId, date, leaveType, memo);
   }
 
   // 특정 날짜 휴가 조회

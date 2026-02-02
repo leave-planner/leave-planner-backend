@@ -25,10 +25,10 @@ public class LeaveDayService{
     Optional<LeaveDay> existing = leaveDayRepository.findByUserIdAndDate(userId, date);
     if (existing.isPresent()){
       throw new IllegalStateException("이미 해당 날짜 휴가 존재");
-    }
+    }    
 
     //leaveDay 생성
-    LeaveDay leaveDay = new LeaveDay(userId, leaveType, date, memo);
+    LeaveDay leaveDay = new LeaveDay(userId, date, leaveType, memo);
 
     //repository로
     return leaveDayRepository.save(leaveDay);

@@ -6,13 +6,13 @@ public class LeaveDay{
   
   private Long leaveDayId;
   private final Long userId;
-  private final LeaveType subType;
+  private LeaveType leaveType;
   private LocalDate date;
   private final String memo;
 
-  public LeaveDay(Long userId, LeaveType subType, LocalDate date, String memo){    
+  public LeaveDay(Long userId, LocalDate date, LeaveType leaveType, String memo){    
     this.userId = userId;
-    this.subType = subType;
+    this.leaveType = leaveType;
     this.date = date;
     this.memo = memo;
   }
@@ -32,8 +32,8 @@ public class LeaveDay{
     return userId;
   }
 
-  public LeaveType getSubType(){
-    return subType;
+  public LeaveType getLeaveType(){
+    return leaveType;
   }
 
   public LocalDate getDate(){

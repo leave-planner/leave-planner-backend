@@ -1,24 +1,19 @@
 package com.leaveplanner.domain;
 
-public class LeaveType{
+public enum LeaveType {
+    ANNUAL("연가"),
+    REWARD("포상휴가"),
+    COMFORT("위로휴가"),
+    SPECIAL("특별휴가"),
+    EXTERIOR("외출/외박");
 
-  private final Long leaveTypeId;
-  private final String name;
-  private final boolean isCustom;
+    private final String displayName;
 
-  public LeaveType(Long leaveTypeId, String name, boolean isCustom){
-    this.leaveTypeId = leaveTypeId;
-    this.name = name;
-    this.isCustom = isCustom;
-  }
+    LeaveType(String displayName) {
+        this.displayName = displayName;
+    }
 
-  public Long getLeaveTypeId(){
-    return leaveTypeId;
-  }
-
-  public String getName(){
-    return name;
-  }
-
-  
+    public String getDisplayName() {
+        return displayName;
+    }
 }

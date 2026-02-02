@@ -19,17 +19,17 @@ public class Main {
 
      //test용
      Long testUserId = 1L;
-     LeaveType testAnnualType = new LeaveType(1L, "Annual", true);   
+     LeaveType testAnnualType = LeaveType.ANNUAL;
      LocalDate testdate1 = LocalDate.of(2026, 1, 10);   
      LocalDate testdate2 = LocalDate.of(2026, 1, 11);
 
 
      //휴가생성
-     controller.createLeaveDay(testUserId, testdate1, 1L, "연가1");
-     controller.createLeaveDay(testUserId, testdate2, 1L, "연가2");
+     controller.createLeaveDay(testUserId, testdate1, testAnnualType, "연가1");
+     controller.createLeaveDay(testUserId, testdate2, testAnnualType, "연가2");
 
      //휴가조회
-     Optional<LeaveDay> leave = controller.findLeaveDay(1L,testdate1);
+     Optional<LeaveDay> leave = controller.findLeaveDay(testUserId,testdate1);
 
      // 월별 휴가 조회
      List<LeaveDay> monthLeaveDayList = controller.getMonthlyLeaves(testUserId, 2026, 1);
