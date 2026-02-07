@@ -1,12 +1,16 @@
 #run = "javac $(find . -name '*.java') && java Main"
 
-run = "mvn test"
+run = "mvn spring-boot:run"
 
 [agent]
 expertMode = true
 
 [nix]
 channel = "stable-25_05"
+
+[[ports]]
+localPort = 8080
+externalPort = 80
 
 
 # [agent]

@@ -21,6 +21,7 @@ public class AppConfig{
   public LeaveDayRepository leaveDayRepository(){
     return new InMemoryLeaveDayRepository();
   }
+  
   public UserRepository userRepository(){
     return new InMemoryUserRepository();
   }
@@ -29,6 +30,7 @@ public class AppConfig{
   public LeaveDayService leaveDayService(){
     return new LeaveDayService(leaveDayRepository());
   }
+  
   public UserService userService(){
     return new UserService(userRepository());
   }
@@ -37,6 +39,7 @@ public class AppConfig{
   public LeaveDayController leaveDayController() {
       return new LeaveDayController(leaveDayService());
   }
+  
   public UserController userController() {
       return new UserController(userService());
   }
