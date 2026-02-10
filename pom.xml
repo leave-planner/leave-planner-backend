@@ -5,6 +5,7 @@
          xsi:schemaLocation="
            http://maven.apache.org/POM/4.0.0
            http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
     <modelVersion>4.0.0</modelVersion>
 
     <!-- Spring Boot Parent 추가 -->
@@ -35,9 +36,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <!-- 기존 테스트 라이브러리들은 spring-boot-starter-test에 포함됨 -->
+        </dependency>       
     </dependencies>
 
     <build>

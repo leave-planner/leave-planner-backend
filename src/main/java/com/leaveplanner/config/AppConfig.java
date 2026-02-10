@@ -14,9 +14,12 @@ import com.leaveplanner.service.UserService;
 import com.leaveplanner.controller.LeaveDayController;
 import com.leaveplanner.controller.UserController;
 
-  
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
 public class AppConfig{
 
+  /*
   //repository
   public LeaveDayRepository leaveDayRepository(){
     return new InMemoryLeaveDayRepository();
@@ -43,5 +46,6 @@ public class AppConfig{
   public UserController userController() {
       return new UserController(userService());
   }
+  */
   
 }
