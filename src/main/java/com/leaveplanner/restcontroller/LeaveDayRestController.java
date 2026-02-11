@@ -21,10 +21,43 @@ public class LeaveDayRestController{
     this.leaveDayService = leaveDayService;
   }
 
-  //휴가 등록
+  // 휴가 등록
   @PostMapping
-  public void createLeaveDay(Long userId, LocalDate date, LeaveType leaveType, String memo){
-    
+  public LeaveDay createLeaveDay(@RequestBody LeaveDayCreateRequest request) {
+    return leaveDayService.create(
+      request.getUserId(),
+      request.getDate(),
+      request.getLeaveType(),
+      request.getMemo()
+    );
+  }
+
+  // 특정 날짜 휴가 조회
+  @GetMapping
+  public Optional<LeaveDay> findLeaveDay(@ModelAttribute LeaveDaySearchRequest request) {
+    return leaveDayService.findLeaveDay(request.getUserId(), request.getDate());
+  }
+
+  // 연속 휴가 조회
+  @GetMapping("/continuous")
+  public Optional<ContinuousLeave> findContinuousLeave(@ModelAttribute LeaveDaySearchRequest request) {
+    return leaveDayService.findContinuousLeave(request.getUserId(), request.getDate());
+  }
+
+  // 월별 휴가 목록 조회
+  @GetMapping("/monthly")
+  public List<LeaveDay> getMonthlyLeaves(@ModelAttribute MonthlyLeavesRequest request) {
+    // LocalDate에서 year, month 추출
+    int year = request.getYearMonth().getYear();
+    int month = request.getYearMonth().getMonthValue();
+
+    return leaveDayService.findLeaveDaysByMonth(request.getUserId(), year, month);
+  }
+
+  // 휴가 삭제
+  @DeleteMapping("/{leaveDayId}")
+  public void deleteLeaveDay(@PathVariable Long leaveDayId) {
+    leaveDayService.deleteLeaveDay(leaveDayId);
   }
     
   
