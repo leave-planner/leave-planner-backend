@@ -5,11 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 import com.leaveplanner.domain.LeaveDay;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.Optional;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Repository
 public class InMemoryLeaveDayRepository implements LeaveDayRepository{
 
 

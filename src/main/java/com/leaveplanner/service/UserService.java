@@ -3,10 +3,13 @@ package com.leaveplanner.service;
 import com.leaveplanner.domain.User;
 import com.leaveplanner.repository.UserRepository;
 
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class UserService {
 
     private final UserRepository userRepository;

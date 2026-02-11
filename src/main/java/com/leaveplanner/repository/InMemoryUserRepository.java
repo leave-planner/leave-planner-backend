@@ -2,6 +2,8 @@ package com.leaveplanner.repository;
 
 import com.leaveplanner.domain.User;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +12,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class InMemoryUserRepository implements UserRepository {
 
     //임시 저장 map 객체 
