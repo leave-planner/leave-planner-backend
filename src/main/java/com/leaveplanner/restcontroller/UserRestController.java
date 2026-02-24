@@ -11,13 +11,13 @@ public class UserRestController{
 
   private final UserService userService;
 
-  puvlic UserRestController(UserService userService){
+  public UserRestController(UserService userService){
     this.userService = useService;
   }
 
   //사용자 생성
   @PostMapping
-  public Long createUser(@RequestBody request){
+  public Long createUser(@RequestBody UserCreateRequest request){
     User user = userService
       .create(request.getName(), request.getEmail(), request.getEnlistmentDate());
     return user.getId();
@@ -25,12 +25,14 @@ public class UserRestController{
 
 
   //사용자 단건 조회
+  @GetMapping("/{userId}")
   public Optional<User> getUser(@RequestParam Long userId) {
     return userService.findById(userId);
   }
   
 
   //사용자 전체 조회
+  @GetMapping
   public List<User> getUsers() {
     return userService.findAll();
   }

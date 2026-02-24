@@ -15,7 +15,7 @@ import java.util.Optional;
 @Service
 public class LeaveDayService{
 
-  private LeaveDayRepository leaveDayRepository;
+  private final LeaveDayRepository leaveDayRepository;
 
   public LeaveDayService(LeaveDayRepository leaveDayRepository){
     this.leaveDayRepository = leaveDayRepository;

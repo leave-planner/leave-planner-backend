@@ -9,7 +9,7 @@ import com.leaveplanner.domain.LeaveType;
 import com.leaveplanner.service.LeaveDayService;
 import com.leaveplanner.dto.ContinuousLeave;
 
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/leave-days")
@@ -17,7 +17,7 @@ public class LeaveDayRestController{
 
   private final LeaveDayService leaveDayService;
 
-  public LeaveDayController(LeaveDayService leaveDayService) {
+  public LeaveDayRestController(LeaveDayService leaveDayService) {
     this.leaveDayService = leaveDayService;
   }
 
