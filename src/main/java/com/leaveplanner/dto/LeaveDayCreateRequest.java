@@ -1,6 +1,8 @@
 package com.leaveplanner.dto;
 
 import com.leaveplanner.domain.LeaveType;
+import lombok.Getter;
+
 import java.time.LocalDate;
 
 @Getter

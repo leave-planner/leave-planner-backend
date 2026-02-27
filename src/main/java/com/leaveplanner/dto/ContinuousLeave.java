@@ -1,9 +1,10 @@
 package com.leaveplanner.dto;
 
 import com.leaveplanner.domain.LeaveDay;
-
 import java.time.LocalDate;
 import java.util.List;
+
+
 
 public class ContinuousLeave {
 

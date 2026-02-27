@@ -1,18 +1,21 @@
 package com.leaveplanner.restcontroller;
 
 import com.leaveplanner.domain.User;
+import com.leaveplanner.dto.UserCreateRequest;
 import com.leaveplanner.service.UserService;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+@RestController
 public class UserRestController{
 
   private final UserService userService;
 
   public UserRestController(UserService userService){
-    this.userService = useService;
+    this.userService = userService;
   }
 
   //사용자 생성
